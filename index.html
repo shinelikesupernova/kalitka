@@ -7,133 +7,37 @@
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            background: #f4f6f9;
-            margin: 0;
-            padding: 20px 16px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-            box-sizing: border-box;
-            user-select: none;
+            background: #f4f6f9; margin: 0; padding: 20px 16px;
+            display: flex; flex-direction: column; align-items: center; min-height: 100vh;
+            box-sizing: border-box; user-select: none;
         }
-        .header {
-            width: 100%;
-            max-width: 400px;
-            margin-bottom: 20px;
-        }
-        .header h1 {
-            font-size: 24px;
-            margin: 0;
-            color: #111;
-        }
-        .header p {
-            font-size: 14px;
-            color: #666;
-            margin: 4px 0 0 0;
-        }
-        .container {
-            width: 100%;
-            max-width: 400px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 14px;
-        }
+        .header { width: 100%; max-width: 400px; margin-bottom: 20px; }
+        .header h1 { font-size: 24px; margin: 0; color: #111; }
+        .header p { font-size: 14px; color: #666; margin: 4px 0 0 0; }
+        .container { width: 100%; max-width: 400px; display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
         .tile {
-            background: white;
-            border-radius: 20px;
-            padding: 20px 16px;
-            box-shadow: 0 4px 16px rgba(0,0,0,0.05);
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            position: relative;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            border: 2px solid transparent;
-            min-height: 130px;
-            justify-content: space-between;
+            background: white; border-radius: 20px; padding: 20px 16px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.05); display: flex; flex-direction: column;
+            cursor: pointer; border: 2px solid transparent; min-height: 120px; justify-content: space-between;
         }
-        .tile:active {
-            transform: scale(0.97);
-        }
-        .tile.active {
-            border-color: #007aff;
-            background: #f8fbff;
-        }
-        .badge {
-            position: absolute;
-            top: 14px;
-            right: 14px;
-            background: #e5f1ff;
-            color: #007aff;
-            border-radius: 50%;
-            width: 28px;
-            height: 28px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 14px;
-        }
-        .tile-icon {
-            font-size: 34px;
-            margin-bottom: 8px;
-        }
-        .tile-title {
-            font-size: 16px;
-            font-weight: 600;
-            color: #222;
-            line-height: 1.25;
-        }
-        .tile-status {
-            font-size: 12px;
-            color: #888;
-            margin-top: 4px;
-        }
+        .tile.active { border-color: #007aff; background: #f8fbff; }
+        .tile-icon { font-size: 32px; }
+        .tile-title { font-size: 16px; font-weight: 600; color: #222; }
         .action-box {
-            width: 100%;
-            max-width: 400px;
-            margin-top: 24px;
-            background: white;
-            border-radius: 24px;
-            padding: 20px;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.06);
-            box-sizing: border-box;
-            text-align: center;
+            width: 100%; max-width: 400px; margin-top: 24px; background: white;
+            border-radius: 24px; padding: 20px; box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+            box-sizing: border-box; text-align: center;
         }
         .btn-open {
-            background: #007aff;
-            color: white;
-            border: none;
-            width: 100%;
-            height: 64px;
-            border-radius: 18px;
-            font-size: 20px;
-            font-weight: 600;
-            cursor: pointer;
+            background: #007aff; color: white; border: none; width: 100%; height: 64px;
+            border-radius: 18px; font-size: 20px; font-weight: 600; cursor: pointer;
             box-shadow: 0 6px 18px rgba(0, 122, 255, 0.3);
-            transition: all 0.2s ease;
         }
-        .btn-open:disabled {
-            background: #c7d2e0;
-            box-shadow: none;
-            cursor: not-allowed;
-        }
-        .status-text {
-            margin-top: 14px;
-            font-size: 14px;
-            color: #666;
-            min-height: 20px;
-        }
-        .btn-scan {
-            background: #f0f2f5;
-            color: #333;
-            border: 1px solid #ddd;
-            border-radius: 12px;
-            padding: 8px 14px;
-            font-size: 13px;
-            margin-top: 10px;
-            cursor: pointer;
+        .btn-open:disabled { background: #c7d2e0; box-shadow: none; cursor: not-allowed; }
+        .status-box {
+            margin-top: 14px; font-size: 13px; color: #444; background: #f8f9fa;
+            border-radius: 12px; padding: 10px; min-height: 48px; text-align: left;
+            font-family: monospace; white-space: pre-wrap; word-break: break-all;
         }
     </style>
 </head>
@@ -146,33 +50,25 @@
 
 <div class="container">
     <div id="tile-kalitka" class="tile active" onclick="selectDevice('kalitka')">
-        <div class="badge" title="Bluetooth">ᛒ</div>
         <div class="tile-icon">🚪</div>
-        <div>
-            <div class="tile-title">Калитка</div>
-            <div id="status-kalitka" class="tile-status">Выбрано</div>
-        </div>
+        <div class="tile-title">Калитка</div>
     </div>
-
     <div id="tile-vkhod" class="tile" onclick="selectDevice('vkhod')">
-        <div class="badge" title="Bluetooth">ᛒ</div>
         <div class="tile-icon">🏢</div>
-        <div>
-            <div class="tile-title">Центр. вход</div>
-            <div id="status-vkhod" class="tile-status">Корпус 2</div>
-        </div>
+        <div class="tile-title">Центр. вход</div>
     </div>
 </div>
 
 <div class="action-box">
     <button id="openBtn" class="btn-open" onclick="openSelected()">ОТКРЫТЬ</button>
-    <div id="statusLog" class="status-text">Нажмите «Открыть» рядом с входом</div>
-    <button id="scanBtn" class="btn-scan" onclick="startScanner()">🔍 Сканировать окружение</button>
+    <div id="statusLog" class="status-box">Готово к подключению</div>
 </div>
 
 <script>
-    const SERVICE_UUID = 0xFE00;
-    const CHAR_UUID    = 0xFE01;
+    const SERVICE_UUID = "0000fe00-0000-1000-8000-00805f9b34fb";
+    const CHAR_DATA_UUID   = "0000fe01-0000-1000-8000-00805f9b34fb"; // 0xFE01
+    const CHAR_STATUS_UUID = "0000fe02-0000-1000-8000-00805f9b34fb"; // 0xFE02
+    const CHAR_NOTIF_UUID  = "0000fe06-0000-1000-8000-00805f9b34fb"; // 0xFE06
 
     const DEVICES = {
         kalitka: {
@@ -183,7 +79,7 @@
                       "ef0012b59070a52ed5ae77d67256e507d6797c993c0a236774f80ba215f0e16aac78"
         },
         vkhod: {
-            name: "Центр. вход (2 корпус)",
+            name: "Центр. вход",
             tokenHex: "4d49520382000001730101cc7a5f5f50172a2983c3852ef41ae54e03113732a6609bbf90" +
                       "f19e45c6e73387cbad472c014cfbf27484cf9027c75b6833d7f663edfcdeb30e476ab772" +
                       "3b5bfafb899a089060aa76df9e3e3761e89c857cfa81b16c3000e44a8ae4d53b78a16ebd" +
@@ -197,7 +93,12 @@
         selectedKey = key;
         document.getElementById("tile-kalitka").classList.toggle("active", key === "kalitka");
         document.getElementById("tile-vkhod").classList.toggle("active", key === "vkhod");
-        document.getElementById("statusLog").innerText = "Выбран объект: " + DEVICES[key].name;
+        log("Выбран: " + DEVICES[key].name);
+    }
+
+    function log(msg) {
+        const el = document.getElementById("statusLog");
+        el.innerText = msg;
     }
 
     function calculateCrc(bytes) {
@@ -223,7 +124,7 @@
         const bytes = new Uint8Array(buffer);
 
         bytes[0] = 0x4D; bytes[1] = 0x49; bytes[2] = 0x52; // "MIR"
-        bytes[3] = command; // 0x04 (OPEN_DOOR_MANUAL)
+        bytes[3] = command; // 0x04
         view.setUint16(4, 0, true);
         bytes.set(timeBytes, 6);
         view.setUint16(10, crc, true);
@@ -236,76 +137,77 @@
         for (let i = 0; i < hex.length; i += 2) {
             bytes[i / 2] = parseInt(hex.substr(i, 2), 16);
         }
-        return bytes.buffer;
+        return bytes;
     }
 
-    async function startScanner() {
-        const log = document.getElementById("statusLog");
-        if (!navigator.bluetooth || !navigator.bluetooth.requestLEScan) {
-            log.innerText = "Фоновое автосканирование не поддерживается вашим Chrome. Нажмите «ОТКРЫТЬ» для прямого подключения.";
-            return;
-        }
-        try {
-            log.innerText = "Сканирование эфира BLE...";
-            const scan = await navigator.bluetooth.requestLEScan({
-                filters: [{ namePrefix: "OPPEN" }],
-                keepRepeatedDevices: true
-            });
-            navigator.bluetooth.addEventListener("advertisementreceived", event => {
-                log.innerText = `Рядом: ${event.device.name || "OPPEN"} (RSSI: ${event.rssi} dBm)`;
-            });
-        } catch (e) {
-            log.innerText = "Сканер: " + (e.message || e);
+    // Запись с нарезкой по 20 байт для обхода MTU в Chrome
+    async function writeInChunks(characteristic, dataBytes) {
+        const CHUNK_SIZE = 20;
+        for (let offset = 0; offset < dataBytes.length; offset += CHUNK_SIZE) {
+            const chunk = dataBytes.slice(offset, offset + CHUNK_SIZE);
+            if (characteristic.writeValueWithResponse) {
+                await characteristic.writeValueWithResponse(chunk);
+            } else {
+                await characteristic.writeValue(chunk);
+            }
+            await new Promise(r => setTimeout(r, 40));
         }
     }
 
     async function openSelected() {
         const dev = DEVICES[selectedKey];
         const btn = document.getElementById("openBtn");
-        const log = document.getElementById("statusLog");
-
         btn.disabled = true;
 
         try {
-            if (!navigator.bluetooth) {
-                log.innerText = "Web Bluetooth не поддерживается";
-                btn.disabled = false;
-                return;
-            }
-
-            log.innerText = `Поиск ${dev.name}...`;
-
+            log(`[1/5] Поиск ${dev.name}...`);
             const device = await navigator.bluetooth.requestDevice({
                 filters: [{ namePrefix: "OPPEN" }],
                 optionalServices: [SERVICE_UUID]
             });
 
-            log.innerText = "Подключение к замку...";
+            log(`[2/5] Подключение к ${device.name}...`);
             const server = await device.gatt.connect();
 
-            log.innerText = "Получение сервиса...";
+            log("[3/5] Инициализация сервисов СКУД...");
             const service = await server.getPrimaryService(SERVICE_UUID);
-            const characteristic = await service.getCharacteristic(CHAR_UUID);
+            
+            const charData = await service.getCharacteristic(CHAR_DATA_UUID);
+            
+            // Включаем уведомления как в кадрах 7839, 7841
+            try {
+                await charData.startNotifications();
+                const charStatus = await service.getCharacteristic(CHAR_STATUS_UUID);
+                await charStatus.startNotifications();
+                await charStatus.readValue(); // Кадр 7849
+            } catch(e) {
+                console.warn("Подписка:", e);
+            }
 
-            log.innerText = "Авторизация ключа доступа...";
-            await characteristic.writeValueWithResponse(hexToBytes(dev.tokenHex));
+            log("[4/5] Авторизация ключа доступа...");
+            const tokenBytes = hexToBytes(dev.tokenHex);
+            await writeInChunks(charData, tokenBytes);
 
             await new Promise(r => setTimeout(r, 200));
 
-            log.innerText = "Открытие замка...";
-            await characteristic.writeValueWithResponse(buildPacket(0x04));
+            log("[5/5] Отправка команды открытия...");
+            const openCmd = buildPacket(0x04);
+            if (charData.writeValueWithResponse) {
+                await charData.writeValueWithResponse(openCmd);
+            } else {
+                await charData.writeValue(openCmd);
+            }
 
-            log.innerText = `✅ ${dev.name} открыта!`;
+            log(`✅ УСПЕШНО!\n${dev.name} открыта`);
 
             setTimeout(() => {
                 if (device.gatt.connected) device.gatt.disconnect();
                 btn.disabled = false;
-                log.innerText = "Готово к следующему открытию";
             }, 2500);
 
         } catch (error) {
             console.error(error);
-            log.innerText = "Ошибка: " + (error.message || error);
+            log(`❌ Ошибка:\n${error.message || error}`);
             btn.disabled = false;
         }
     }
